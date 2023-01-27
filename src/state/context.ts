@@ -2,6 +2,7 @@ export interface Context {
     directory: string,
 
     name: string,
+    fixedName: string,
 
     pascal: string,
     camel: string,

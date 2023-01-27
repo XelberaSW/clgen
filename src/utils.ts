@@ -11,9 +11,9 @@ export async function run(commandToRun: string) {
                 return;
             }
             if (stderr) {
-                console.log(`stderr: ${stderr}`);
+                console.warn(`${stderr}`);
             }
-            console.log(`stdout: ${stdout}`);
+            //console.log(`stdout: ${stdout}`);
             resolve();
         });
     });
@@ -60,7 +60,7 @@ export async function loadJson(filePath: string) {
 
 
 export function camelToKebab(str: string) {
-    str = str.replace(/\s+/, '-').replace(/^[A-Z]/, (match) => match.toLowerCase());
+    str = str.replace(/\s+/g, '-').replace(/^[A-Z]/, (match) => match.toLowerCase());
     return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 

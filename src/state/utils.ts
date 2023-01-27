@@ -20,6 +20,7 @@ export function getPartialContextByName(name: string): PartialContext {
 
     const ctx: PartialContext = {
         name,
+        fixedName,
         pascal,
         camel,
         kebab,

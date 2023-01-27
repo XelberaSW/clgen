@@ -15,7 +15,7 @@ export async function initializeDataModule(directory: string, ctx: PartialContex
 import { ${ctx.pascal}Component } from '${ctx.ns}/${ctx.kebab}/feature';
 import { ${ctx.providers} } from './state/${getStateProviderFileName(ctx.kebab)}';
 
-export const routes: Routes = [{
+export const ${ctx.camel}Routes: Routes = [{
     path: '',
     providers: [
         ${ctx.providers}
