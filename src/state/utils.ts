@@ -4,7 +4,7 @@ import { Context } from './context';
 export type PartialContext = Omit<Context, 'directory' | 'hasEffects'>;
 
 export function getPartialContextByName(name: string): PartialContext {
-    const fixedName = name.replace(/\s+/, '-').replace(/^-+/, '');
+    const fixedName = name.replace(/\s+/g, '-').replace(/^-+/, '');
     const pascal = kebabToPascal(fixedName);
     const camel = pascal[0].toLowerCase() + pascal.substring(1);
     const kebab = camelToKebab(fixedName);
