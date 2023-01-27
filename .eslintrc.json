@@ -1,0 +1,188 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ], // Your TypeScript files extension
+            // As mentioned in the comments, you should extend TypeScript plugins here,
+            // instead of extending them outside the `overrides`.
+            // If you don"t want to extend any rules, you don"t need an `extends` attribute.
+            "parserOptions": {
+                "project": [
+                    "./tsconfig.json"
+                ] // Specify it only for TypeScript files
+            }
+        }
+    ],
+    "rules": {
+        "curly": "error",
+        "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "no-loss-of-precision": "off",
+        "@typescript-eslint/no-loss-of-precision": "error",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "error",
+        // "@typescript-eslint/prefer-readonly": "warn",
+        "quotes": "off",
+        "@typescript-eslint/quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "require-await": "off",
+        "@typescript-eslint/require-await": "error",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "eslint/lines-between-class-members": "off",
+        "@typescript-eslint/lines-between-class-members": "off",
+        "@typescript-eslint/member-ordering": [
+            "warn",
+            {
+                "classes": [
+                    "signature",
+                    "private-static-field",
+                    "protected-static-field",
+                    "private-field",
+                    "protected-field",
+                    "constructor",
+                    "abstract-field",
+                    "public-static-field",
+                    "field",
+                    "public-abstract-method",
+                    "protected-abstract-method",
+                    "public-static-method",
+                    "public-method",
+                    "protected-method",
+                    "private-method"
+                ]
+            }
+        ],
+        "@typescript-eslint/naming-convention": [
+            "warn",
+            {
+                "selector": "default",
+                "format": [
+                    "camelCase"
+                ]
+            },
+            {
+                "selector": "typeLike",
+                "format": [
+                    "PascalCase"
+                ]
+            },
+            {
+                "selector": "enumMember",
+                "format": [
+                    "PascalCase"
+                ]
+            },
+            {
+                "selector": "variable",
+                "format": [
+                    "camelCase"
+                ]
+            },
+            {
+                "selector": "variable",
+                "modifiers": [
+                    "const"
+                ],
+                "format": [
+                    "camelCase",
+                    "UPPER_CASE",
+                    "PascalCase"
+                ]
+            },
+            {
+                "selector": "parameter",
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": [
+                    "parameterProperty"
+                ],
+                "modifiers": [
+                    "private",
+                    "readonly"
+                ],
+                "format": [
+                    "camelCase",
+                    "UPPER_CASE"
+                ],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": [
+                    "property",
+                    "parameterProperty"
+                ],
+                "modifiers": [
+                    "readonly"
+                ],
+                "format": [
+                    "camelCase",
+                    "UPPER_CASE",
+                    "PascalCase"
+                ]
+            },
+            {
+                "selector": [
+                    "property"
+                ],
+                "modifiers": [
+                    "private"
+                ],
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "require"
+            },
+            {
+                "selector": [
+                    "property"
+                ],
+                "modifiers": [
+                    "protected"
+                ],
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "allow"
+            }
+        ]
+    }
+}

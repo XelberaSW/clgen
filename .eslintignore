@@ -1,0 +1,4 @@
+node_modules
+nativeapp/node_modules
+dist
+*.spec.ts
