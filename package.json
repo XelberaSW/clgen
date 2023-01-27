@@ -1,6 +1,6 @@
 {
     "name": "@xelberasw/clgen",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "Toolset for generating standalone libraries and NgRx states for Angular",
     "main": "./dist/index.js",
     "author": "Steve Matafonov",
