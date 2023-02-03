@@ -13,11 +13,14 @@ import { initializeUiModule } from './ui-module.generator';
 import { PartialContextEx } from './utils';
 
 export default new Command('page')
+    .description('Create set of libraries to be used as a single page')
     .argument('<name>', 'Name of page to be added')
+    .option('--skip-state', 'Do not generate state')
     .option('-r|--route <url>', 'Route where page will be awailable at')
-    .action(async (pageName: string, options: { route: string }) => {
+    .action(async (pageName: string, options: { route: string, skipState: boolean }) => {
         pageName = camelToKebab(pageName);
-        const routeToBeUsed = options.route ? camelToKebab(options.route) : null;
+        const routeToBeUsed = options?.route ? camelToKebab(options.route) : null;
+        const skipState = options?.skipState ?? false;
 
         const pathes = await generateLibraries(pageName);
         if (!pathes) {
@@ -36,7 +39,7 @@ export default new Command('page')
         ctx.ns = ns;
 
         await Promise.all([
-            initializeDataModule(pathes.data, ctx, routeToBeUsed),
+            initializeDataModule(pathes.data, ctx, skipState, routeToBeUsed),
             initializeFeatureModule(pathes.feature, ctx),
             initializeUiModule(pathes.ui, ctx),
             initializeModelsModule(pathes.model, ctx)

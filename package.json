@@ -1,10 +1,10 @@
 {
     "name": "@xelberasw/clgen",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "Toolset for generating standalone libraries and NgRx states for Angular",
     "main": "./dist/index.js",
     "author": "Steve Matafonov",
-    "license": "MIT",
+    "license": "ISC",
     "private": false,
     "homepage": "https://github.com/XelberaSW/clgen",
     "repository": {
@@ -26,9 +26,12 @@
         "webpack-shebang-plugin": "^1.1.8"
     },
     "dependencies": {
-        "commander": "^10.0.0"
+        "commander": "^10.0.0",
+        "nx": "^15.6.3"
     },
     "files": [
-        "./dist/**/*.js"
+        "./dist/**/*.js",
+        "./README.md",
+        "./LICENSE.md"
     ]
 }

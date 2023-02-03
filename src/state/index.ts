@@ -13,10 +13,11 @@ import { generateStateFile } from './state-file.generator';
 import { getPartialContextByName } from './utils';
 
 export default new Command('state')
+    .description('This command generates set of state-related files')
     .argument('<name>', 'Name of state to be added. This will be the feature name as well')
     .option('-d|--directory <path>', 'Directory to generate state in', '.')
     .option('--skip-effects', 'Do not generate effects', false)
-    .option('-s|--same-directory', 'Do not generate state directory. Put all state items in directory providerd byt -d option', false)
+    .option('-s|--same-directory', 'Do not generate state directory. Put all state items in directory providerd by -d option', false)
     .action(createStateAsync);
 
 export async function createStateAsync(name: string, options: { directory: string, skipEffects: boolean, sameDirectory: boolean }) {

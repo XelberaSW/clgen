@@ -5,8 +5,10 @@ import { getStateProviderFileName } from '../state/utils';
 import { writeModule } from './module.generator';
 import { PartialContextEx } from './utils';
 
-export async function initializeDataModule(directory: string, ctx: PartialContextEx, routeToBeUsed: string | null) {
-    await createStateAsync(ctx.name, { directory: path.join(directory, 'src', 'lib'), skipEffects: false, sameDirectory: false });
+export async function initializeDataModule(directory: string, ctx: PartialContextEx, skipState: boolean, routeToBeUsed: string | null) {
+    if (!skipState) {
+        await createStateAsync(ctx.name, { directory: path.join(directory, 'src', 'lib'), skipEffects: false, sameDirectory: false });
+    }
 
     console.log({ routeToBeUsed });
 
