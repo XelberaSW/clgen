@@ -1,7 +1,7 @@
 import { camelToKebab, kebabToPascal } from '../utils';
 import { Context } from './context';
 
-export type PartialContext = Omit<Context, 'directory' | 'hasEffects'>;
+export type PartialContext = Omit<Context, 'directory' | 'hasEffects' | 'standalone'>;
 
 export function getPartialContextByName(name: string): PartialContext {
     const fixedName = name.replace(/\s+/g, '-').replace(/^-+/, '');
@@ -18,6 +18,11 @@ export function getPartialContextByName(name: string): PartialContext {
     const feature = `${upper}_FEATURE`;
     const providers = `${pascal}Providers`;
 
+    const dataModuleClassName = `${pascal}DataModule`;
+    const featureModuleClassName = `${pascal}FeatureModule`;
+    const uiModuleClassName = `${pascal}UiModule`;
+
+
     const ctx: PartialContext = {
         name,
         fixedName,
@@ -31,7 +36,11 @@ export function getPartialContextByName(name: string): PartialContext {
         selectors,
         state,
         feature,
-        providers
+        providers,
+
+        dataModuleClassName,
+        featureModuleClassName,
+        uiModuleClassName
     };
 
     return ctx;

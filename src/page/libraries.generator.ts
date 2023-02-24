@@ -1,8 +1,9 @@
 import path from 'path';
 
+import { addPage } from '../linter-config/pages';
 import { loadNearest, run } from '../utils';
 
-export async function generateLibraries(name: string) {
+export async function generateLibraries(name: string, verbose: boolean) {
     const nxJson = await loadNearest('nx.json');
     let root = nxJson?.workspaceLayout?.libsDir;
 
@@ -18,10 +19,18 @@ export async function generateLibraries(name: string) {
 
     root = path.resolve(root);
 
-    await run(`npx nx g @nrwl/angular:library ui --directory ${name}`);
-    await run(`npx nx g @nrwl/angular:library model --directory ${name}`);
-    await run(`npx nx g @nrwl/angular:library data --directory ${name}`);
-    await run(`npx nx g @nrwl/angular:library feature --directory ${name}`);
+    const verbosity = verbose ? '--verbose' : '';
+
+    const getCommandLline = (type: 'ui' | 'model' | 'data' | 'feature') => {
+        return `npx nx g @nrwl/angular:library ${type} --directory ${name} --tags="page:${name}","type:${type}" ${verbosity}`;
+    }
+
+    await run(getCommandLline('ui'), verbose);
+    await run(getCommandLline('data'), verbose);
+    await run(getCommandLline('feature'), verbose);
+    await run(getCommandLline('model'), verbose);
+
+    await addPage(name, false);
 
     return {
         ui: path.join(root, name, 'ui'),

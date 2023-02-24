@@ -3,15 +3,21 @@ import path from 'path';
 
 import fs from 'fs/promises';
 
-export async function run(commandToRun: string) {
+export async function run(commandToRun: string, verbose?: boolean) {
     return new Promise<void>((resolve, reject) => {
+        if (verbose) {
+            console.info('[EXEC] ', commandToRun);
+        }
         exec(commandToRun, (error, stdout, stderr) => {
-            if (error) {
-                reject(error);
-                return;
+            if (verbose) {
+                console.log(stdout);
             }
             if (stderr) {
                 console.warn(`${stderr}`);
+            }
+            if (error) {
+                reject(error);
+                return;
             }
             //console.log(`stdout: ${stdout}`);
             resolve();
@@ -67,4 +73,13 @@ export function camelToKebab(str: string) {
 export function kebabToPascal(str: string) {
     str = str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
     return str[0].toUpperCase() + str.substring(1);
+}
+
+export async function fileExistsSafe(filePath: string): Promise<boolean> {
+    try {
+        return (await fs.stat(filePath)).isFile();
+    }
+    catch {
+        return false;
+    }
 }

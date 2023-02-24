@@ -16,5 +16,11 @@ export interface Context {
     feature: string,
     providers: string,
 
+    dataModuleClassName: string;
+    featureModuleClassName: string;
+    uiModuleClassName: string;
+
     hasEffects: boolean;
+
+    standalone: boolean;
 }
